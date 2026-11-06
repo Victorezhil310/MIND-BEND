@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MIND BEND - Fullscreen Optical Runner</title>
+    <link rel="canonical" href="https://mind-bend-five.vercel.app/">
+
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mind-bend-five.vercel.app/">
+    <meta property="og:title" content="MIND BEND - Fullscreen Optical Runner">
+    <meta property="og:description" content="Mind-bending 60FPS optical illusion auto-runner with 8 places, tap-to-turn 3D camera shifts, and Web Audio synth chimes.">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://mind-bend-five.vercel.app/">
+    <meta name="twitter:title" content="MIND BEND - Fullscreen Optical Runner">
+    <meta name="twitter:description" content="Mind-bending 60FPS optical illusion auto-runner with 8 places, tap-to-turn 3D camera shifts, and Web Audio synth chimes.">
+
     <style>
         * {
             margin: 0;
@@ -115,6 +129,20 @@
             display: none;
             pointer-events: none;
         }
+        /* Privacy Footer Link */
+        .privacy-link {
+            position: absolute;
+            bottom: 6px;
+            right: 16px;
+            z-index: 10;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.7rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .privacy-link:hover {
+            color: #00E5FF;
+        }
     </style>
 </head>
 <body>
@@ -140,6 +168,7 @@
 
     <div id="placeBadge" class="place-badge">LOCATION: PENROSE NEXUS</div>
     <div id="comboBadge" class="combo-badge">2x MULTIPLIER (5 STREAK)</div>
+    <a href="/privacy" class="privacy-link">PRIVACY POLICY</a>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
@@ -211,6 +240,8 @@
 
         // Tap Handler
         window.addEventListener('pointerdown', (e) => {
+            if (e.target.tagName === 'A') return; // Don't intercept footer links
+
             if (gameState === 'START' || gameState === 'GAME_OVER') {
                 gameState = 'PLAYING';
                 score = 0;

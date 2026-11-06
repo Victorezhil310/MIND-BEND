@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mind-bend-five.vercel.app/sitemap.xml
