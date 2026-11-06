@@ -1,0 +1,14 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/navModel.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/gradle-8.7-bin.zip
+/gradle/gradle-8.7

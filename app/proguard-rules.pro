@@ -1,0 +1,1 @@
+# Mind Bend Proguard rules
