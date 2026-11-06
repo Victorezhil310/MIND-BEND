@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.VolumeOff
-import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,14 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mindbend.optical.game.model.MindBendUiState
-import com.mindbend.optical.game.model.PathNode
 import com.mindbend.optical.game.model.TapFeedback
 
 @Composable
 fun GameScreen(
     uiState: MindBendUiState,
-    pathNodes: List<PathNode>,
-    onScreenTap: () -> Unit,
     onToggleMute: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -99,7 +96,7 @@ fun GameScreen(
                 }
             }
 
-            // Right side: Audio Mute & Illusion badge
+            // Right side: Audio Mute & Location / Illusion badge
             Column(horizontalAlignment = Alignment.End) {
                 IconButton(
                     onClick = onToggleMute,
@@ -108,7 +105,7 @@ fun GameScreen(
                         .background(Color(0xFF121626).copy(alpha = 0.85f))
                 ) {
                     Icon(
-                        imageVector = if (uiState.isToneMuted) Icons.Default.VolumeOff else Icons.Default.VolumeUp,
+                        imageVector = if (uiState.isToneMuted) Icons.AutoMirrored.Filled.VolumeOff else Icons.AutoMirrored.Filled.VolumeUp,
                         contentDescription = "Mute Tones",
                         tint = uiState.colorPalette.primary
                     )
@@ -120,7 +117,7 @@ fun GameScreen(
                     modifier = Modifier.padding(top = 8.dp)
                 ) {
                     Text(
-                        text = uiState.illusionType.title,
+                        text = uiState.placeName,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
                         color = uiState.colorPalette.primary,

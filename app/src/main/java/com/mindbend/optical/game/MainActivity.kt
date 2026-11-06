@@ -84,8 +84,6 @@ class MainActivity : ComponentActivity() {
                             GameState.PLAYING -> {
                                 GameScreen(
                                     uiState = uiState,
-                                    pathNodes = gameEngine.getPathNodes(),
-                                    onScreenTap = { gameEngine.handleScreenTap() },
                                     onToggleMute = { gameEngine.toggleToneMute() }
                                 )
                             }
