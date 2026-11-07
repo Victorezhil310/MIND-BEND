@@ -129,18 +129,23 @@
             display: none;
             pointer-events: none;
         }
-        /* Privacy Footer Link */
-        .privacy-link {
+        /* Footer Links Bar */
+        .footer-bar {
             position: absolute;
             bottom: 6px;
             right: 16px;
             z-index: 10;
-            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            gap: 12px;
+        }
+        .footer-link {
+            color: rgba(255, 255, 255, 0.45);
             font-size: 0.7rem;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
-        .privacy-link:hover {
+        .footer-link:hover {
             color: #00E5FF;
         }
     </style>
@@ -168,7 +173,12 @@
 
     <div id="placeBadge" class="place-badge">LOCATION: PENROSE NEXUS</div>
     <div id="comboBadge" class="combo-badge">2x MULTIPLIER (5 STREAK)</div>
-    <a href="/privacy" class="privacy-link">PRIVACY POLICY</a>
+
+    <div class="footer-bar">
+        <a href="/privacy" class="footer-link">PRIVACY POLICY</a>
+        <span style="color:rgba(255,255,255,0.2);">|</span>
+        <a href="/terms" class="footer-link">TERMS OF SERVICE</a>
+    </div>
 
     <script>
         const canvas = document.getElementById('gameCanvas');
