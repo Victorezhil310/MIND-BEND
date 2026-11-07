@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -27,7 +28,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Debug signing config so release build generates signed APK and AAB for test/upload
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -61,4 +61,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons)
+
+    // Firebase BoM and Analytics
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 }

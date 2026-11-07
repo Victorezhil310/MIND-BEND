@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "899361482631",
+    "project_id": "mindbend-7e396",
+    "storage_bucket": "mindbend-7e396.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899361482631:android:fefc06e15f679f9e399522",
+        "android_client_info": {
+          "package_name": "com.mindbend.optical.game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbGw2pgfbOhDK6-0Ei3nZauoayzLQ5N64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

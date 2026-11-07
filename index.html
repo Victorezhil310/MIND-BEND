@@ -6,6 +6,10 @@
     <title>MIND BEND - Fullscreen Optical Runner</title>
     <link rel="canonical" href="https://mind-bend-five.vercel.app/">
 
+    <!-- Google AdSense Account & Auto Ads -->
+    <meta name="google-adsense-account" content="ca-pub-3286584236618316">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3286584236618316" crossorigin="anonymous"></script>
+
     <!-- Open Graph / Social Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mind-bend-five.vercel.app/">
@@ -250,7 +254,7 @@
 
         // Tap Handler
         window.addEventListener('pointerdown', (e) => {
-            if (e.target.tagName === 'A') return; // Don't intercept footer links
+            if (e.target.tagName === 'A') return;
 
             if (gameState === 'START' || gameState === 'GAME_OVER') {
                 gameState = 'PLAYING';
@@ -346,7 +350,6 @@
 
             // Draw Dynamic Optical Illusion Biome Background
             if (currentPlaceIndex === 0) {
-                // Penrose Nexus Loops
                 ctx.rotate(angle);
                 for (let i = 0; i < 5; i++) {
                     ctx.strokeStyle = i % 2 === 0 ? primaryColor : secondaryColor;
@@ -360,7 +363,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 1) {
-                // Fraser Vortex
                 ctx.rotate(-angle * 1.2);
                 for (let r = 30; r < 240; r += 20) {
                     ctx.strokeStyle = r % 40 === 0 ? primaryColor : accentColor;
@@ -370,7 +372,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 2) {
-                // Café Wall Corridor
                 for (let row = -6; row <= 6; row++) {
                     const y = row * 40;
                     ctx.strokeStyle = primaryColor;
@@ -381,7 +382,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 3) {
-                // Moiré Speedway
                 ctx.rotate(angle);
                 for (let i = 0; i < 36; i++) {
                     const a = (Math.PI * 2 * i) / 36;
@@ -393,7 +393,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 4) {
-                // Hermann Grid
                 for (let x = -3; x <= 3; x++) {
                     for (let y = -3; y <= 3; y++) {
                         ctx.fillStyle = secondaryColor;
@@ -401,7 +400,6 @@
                     }
                 }
             } else if (currentPlaceIndex === 5) {
-                // Ames Perspective
                 for (let depth = 1; depth <= 6; depth++) {
                     const size = depth * 45 + Math.sin(phase + depth) * 15;
                     ctx.strokeStyle = depth % 2 === 0 ? primaryColor : accentColor;
@@ -409,7 +407,6 @@
                     ctx.strokeRect(-size, -size * 1.3, size * 2, size * 2.6);
                 }
             } else if (currentPlaceIndex === 6) {
-                // Infinity Hyper-Tube
                 ctx.rotate(angle * 1.5);
                 for (let i = 1; i <= 8; i++) {
                     const r = i * 28;
@@ -426,7 +423,6 @@
                     ctx.stroke();
                 }
             } else {
-                // Quantum Prism Void
                 ctx.rotate(angle * 2);
                 for (let i = 0; i < 12; i++) {
                     ctx.strokeStyle = `hsl(${(colorHue + i * 30) % 360}, 100%, 50%)`;
