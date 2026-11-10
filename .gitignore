@@ -1,18 +1,24 @@
+# IntelliJ / Android Studio files
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/navModel.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
+
+# Gradle build outputs and caches
+.gradle/
+build/
+app/build/
 /build
-/captures
-.externalNativeBuild
-.cxx
+/app/build
+
+# Local properties & secrets
 local.properties
-/gradle-8.7-bin.zip
-/gradle/gradle-8.7
+/local.properties
 *.keystore
 *.jks
 *.p12
 *.key
+google-services.json
+
+# Downloads & local server outputs
+/gradle-8.7-bin.zip
+/gradle/
+.DS_Store

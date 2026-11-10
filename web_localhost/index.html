@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>MIND BEND - Fullscreen Optical Runner</title>
+    <link rel="canonical" href="https://mind-bend-five.vercel.app/">
+
+    <!-- Google AdSense Account & Auto Ads -->
+    <meta name="google-adsense-account" content="ca-pub-3286584236618316">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3286584236618316" crossorigin="anonymous"></script>
+
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mind-bend-five.vercel.app/">
+    <meta property="og:title" content="MIND BEND - Fullscreen Optical Runner">
+    <meta property="og:description" content="Mind-bending 60FPS optical illusion auto-runner with 8 places, tap-to-turn 3D camera shifts, and Web Audio synth chimes.">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://mind-bend-five.vercel.app/">
+    <meta name="twitter:title" content="MIND BEND - Fullscreen Optical Runner">
+    <meta name="twitter:description" content="Mind-bending 60FPS optical illusion auto-runner with 8 places, tap-to-turn 3D camera shifts, and Web Audio synth chimes.">
+
     <style>
         * {
             margin: 0;
@@ -84,7 +102,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            background: rgba(15, 18, 31, 0.8f);
+            background: rgba(15, 18, 31, 0.85);
             backdrop-filter: blur(10px);
             padding: 8px 20px;
             border-radius: 20px;
@@ -115,6 +133,25 @@
             display: none;
             pointer-events: none;
         }
+        /* Footer Links Bar */
+        .footer-bar {
+            position: absolute;
+            bottom: 6px;
+            right: 16px;
+            z-index: 10;
+            display: flex;
+            gap: 12px;
+        }
+        .footer-link {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.7rem;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .footer-link:hover {
+            color: #00E5FF;
+        }
     </style>
 </head>
 <body>
@@ -141,6 +178,12 @@
     <div id="placeBadge" class="place-badge">LOCATION: PENROSE NEXUS</div>
     <div id="comboBadge" class="combo-badge">2x MULTIPLIER (5 STREAK)</div>
 
+    <div class="footer-bar">
+        <a href="/privacy" class="footer-link">PRIVACY POLICY</a>
+        <span style="color:rgba(255,255,255,0.2);">|</span>
+        <a href="/terms" class="footer-link">TERMS OF SERVICE</a>
+    </div>
+
     <script>
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
@@ -160,13 +203,11 @@
         let currentPlaceIndex = 0;
         let comboStreak = 0;
         let multiplier = 1;
-        let colorHue = 180; // Dynamic color rotation
+        let colorHue = 180;
         let angle = 0;
         let phase = 0;
         let cameraAngle = 0;
         let targetCameraAngle = 0;
-        let runnerProgress = 0;
-        let runnerSpeed = 0.008;
 
         document.getElementById('highestVal').innerText = highestTap;
 
@@ -182,7 +223,6 @@
             { name: "QUANTUM PRISM VOID", difficulty: "GODLIKE", color: "#FF3D00" }
         ];
 
-        // Particle & Shockwave Systems
         let particles = [];
         let shockwaves = [];
 
@@ -214,6 +254,8 @@
 
         // Tap Handler
         window.addEventListener('pointerdown', (e) => {
+            if (e.target.tagName === 'A') return;
+
             if (gameState === 'START' || gameState === 'GAME_OVER') {
                 gameState = 'PLAYING';
                 score = 0;
@@ -228,10 +270,8 @@
                 multiplier = Math.min(8, 1 + Math.floor(comboStreak / 4));
                 score += 50 * multiplier;
 
-                // Shift camera angle dynamically on every tap!
                 targetCameraAngle += (Math.random() > 0.5 ? 45 : -45);
 
-                // Auto Place / Location Switch every 8 taps!
                 if (taps % 8 === 0) {
                     currentPlaceIndex = (currentPlaceIndex + 1) % places.length;
                     updatePlaceBadge();
@@ -244,7 +284,6 @@
                     localStorage.setItem('highestTap', highestTap);
                 }
 
-                // Spawn Particles & Shockwave
                 spawnParticles(e.clientX, e.clientY);
                 shockwaves.push({ x: e.clientX, y: e.clientY, r: 10, maxR: 160, a: 1 });
             }
@@ -289,7 +328,6 @@
 
         // 60FPS Game Render Loop
         function gameLoop() {
-            // Smooth Camera Angle Lerp
             cameraAngle += (targetCameraAngle - cameraAngle) * 0.1;
             colorHue = (colorHue + 0.5) % 360;
 
@@ -312,7 +350,6 @@
 
             // Draw Dynamic Optical Illusion Biome Background
             if (currentPlaceIndex === 0) {
-                // Penrose Nexus Loops
                 ctx.rotate(angle);
                 for (let i = 0; i < 5; i++) {
                     ctx.strokeStyle = i % 2 === 0 ? primaryColor : secondaryColor;
@@ -326,7 +363,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 1) {
-                // Fraser Vortex
                 ctx.rotate(-angle * 1.2);
                 for (let r = 30; r < 240; r += 20) {
                     ctx.strokeStyle = r % 40 === 0 ? primaryColor : accentColor;
@@ -336,10 +372,8 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 2) {
-                // Café Wall Corridor
                 for (let row = -6; row <= 6; row++) {
                     const y = row * 40;
-                    const offset = Math.sin(phase + row) * 30;
                     ctx.strokeStyle = primaryColor;
                     ctx.lineWidth = 3;
                     ctx.beginPath();
@@ -348,7 +382,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 3) {
-                // Moiré Speedway
                 ctx.rotate(angle);
                 for (let i = 0; i < 36; i++) {
                     const a = (Math.PI * 2 * i) / 36;
@@ -360,7 +393,6 @@
                     ctx.stroke();
                 }
             } else if (currentPlaceIndex === 4) {
-                // Hermann Grid
                 for (let x = -3; x <= 3; x++) {
                     for (let y = -3; y <= 3; y++) {
                         ctx.fillStyle = secondaryColor;
@@ -368,7 +400,6 @@
                     }
                 }
             } else if (currentPlaceIndex === 5) {
-                // Ames Perspective
                 for (let depth = 1; depth <= 6; depth++) {
                     const size = depth * 45 + Math.sin(phase + depth) * 15;
                     ctx.strokeStyle = depth % 2 === 0 ? primaryColor : accentColor;
@@ -376,7 +407,6 @@
                     ctx.strokeRect(-size, -size * 1.3, size * 2, size * 2.6);
                 }
             } else if (currentPlaceIndex === 6) {
-                // Infinity Hyper-Tube
                 ctx.rotate(angle * 1.5);
                 for (let i = 1; i <= 8; i++) {
                     const r = i * 28;
@@ -393,7 +423,6 @@
                     ctx.stroke();
                 }
             } else {
-                // Quantum Prism Void
                 ctx.rotate(angle * 2);
                 for (let i = 0; i < 12; i++) {
                     ctx.strokeStyle = `hsl(${(colorHue + i * 30) % 360}, 100%, 50%)`;
@@ -457,7 +486,7 @@
                 }
             });
 
-            // Screen Start/GameOver Overlay
+            // Screen Start Overlay
             if (gameState === 'START') {
                 ctx.fillStyle = 'rgba(5, 7, 17, 0.65)';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);

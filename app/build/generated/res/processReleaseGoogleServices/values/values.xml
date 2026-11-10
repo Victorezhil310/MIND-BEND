@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="gcm_defaultSenderId" translatable="false">899361482631</string>
-    <string name="google_api_key" translatable="false">AIzaSyBbGw2pgfbOhDK6-0Ei3nZauoayzLQ5N64</string>
-    <string name="google_app_id" translatable="false">1:899361482631:android:fefc06e15f679f9e399522</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBbGw2pgfbOhDK6-0Ei3nZauoayzLQ5N64</string>
-    <string name="google_storage_bucket" translatable="false">mindbend-7e396.firebasestorage.app</string>
-    <string name="project_id" translatable="false">mindbend-7e396</string>
-</resources>
