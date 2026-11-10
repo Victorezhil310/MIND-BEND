@@ -16,9 +16,10 @@ local.properties
 *.jks
 *.p12
 *.key
-google-services.json
 
-# Downloads & local server outputs
+# Local test outputs and binary caches
+web_localhost/
+/web_localhost
 /gradle-8.7-bin.zip
 /gradle/
 .DS_Store
