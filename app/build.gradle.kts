@@ -24,12 +24,23 @@ android {
         applicationId = "com.mindbend.optical.game"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 3
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+    }
+
+    signingConfigs {
+        if (signingPropertiesFile.isFile) {
+            create("release") {
+                storeFile = rootProject.file(signingProperty("storeFile"))
+                storePassword = signingProperty("storePassword")
+                keyAlias = signingProperty("keyAlias")
+                keyPassword = signingProperty("keyPassword")
+            }
         }
     }
 
@@ -40,18 +51,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = if (signingPropertiesFile.isFile) {
-                signingConfigs.create("release") {
-                    storeFile = rootProject.file(signingProperty("storeFile"))
-                    storePassword = signingProperty("storePassword")
-                    keyAlias = signingProperty("keyAlias")
-                    keyPassword = signingProperty("keyPassword")
-                }
-            } else {
-                logger.warn(
-                    "Release signing is not configured. Add keystore.properties to create a signed release."
-                )
-                null
+            if (signingPropertiesFile.isFile) {
+                signingConfig = signingConfigs.getByName("release")
             }
         }
     }
