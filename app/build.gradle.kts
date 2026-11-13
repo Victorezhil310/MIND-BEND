@@ -1,8 +1,20 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
 }
+
+val signingPropertiesFile = rootProject.file("keystore.properties")
+val signingProperties = Properties()
+if (signingPropertiesFile.isFile) {
+    signingPropertiesFile.inputStream().use { signingProperties.load(it) }
+}
+
+fun signingProperty(name: String): String =
+    signingProperties.getProperty(name)?.takeIf { it.isNotBlank() }
+        ?: error("Missing '$name' in ${signingPropertiesFile.path}")
 
 android {
     namespace = "com.mindbend.optical.game"
@@ -28,7 +40,19 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = if (signingPropertiesFile.isFile) {
+                signingConfigs.create("release") {
+                    storeFile = rootProject.file(signingProperty("storeFile"))
+                    storePassword = signingProperty("storePassword")
+                    keyAlias = signingProperty("keyAlias")
+                    keyPassword = signingProperty("keyPassword")
+                }
+            } else {
+                logger.warn(
+                    "Release signing is not configured. Add keystore.properties to create a signed release."
+                )
+                null
+            }
         }
     }
     compileOptions {

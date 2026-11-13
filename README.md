@@ -57,10 +57,31 @@
 
 ## 🛠️ Build Commands
 
-### Rebuild Android Release Binaries (.aab / .apk)
+### Sign and build the Android release bundle
+
+Create an upload keystore (keep it backed up securely; do not commit it):
+
 ```bash
-./gradlew assembleRelease bundleRelease
+keytool -genkeypair -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000
 ```
+
+Copy `keystore.properties.example` to `keystore.properties`, set the actual
+keystore path, alias, and passwords, and keep both files private. The
+`keystore.properties` file and keystore are ignored by Git. For Google Play,
+use this upload key with Play App Signing; do not replace an existing app's
+signing key if you are publishing an update.
+
+Build the signed Android App Bundle:
+
+```bash
+.\gradlew.bat bundleRelease
+```
+
+The bundle is written to
+`app/build/outputs/bundle/release/app-release.aab`. Without
+`keystore.properties`, Gradle builds an unsigned release bundle rather than
+incorrectly signing it with the debug key; that bundle cannot be uploaded to
+Google Play.
 
 ### Run Local Web Server (Port 3464)
 ```bash

@@ -1,6 +1,7 @@
 # IntelliJ / Android Studio files
 .idea/
 *.iml
+.DS_Store
 
 # Gradle build outputs and caches
 .gradle/
@@ -9,17 +10,23 @@ app/build/
 /build
 /app/build
 
-# Local properties & secrets
+# Local properties, keys, keystores & secrets (NEVER PUSH)
 local.properties
 /local.properties
+keystore.properties
 *.keystore
 *.jks
 *.p12
 *.key
+*.pem
+*.pk8
+*.pfx
+*.credentials
+.env*
+signingKey.txt
 
 # Local test outputs and binary caches
 web_localhost/
 /web_localhost
 /gradle-8.7-bin.zip
 /gradle/
-.DS_Store
