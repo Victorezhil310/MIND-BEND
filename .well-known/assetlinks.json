@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mindbend.optical.game",
+      "sha256_cert_fingerprints": [
+        "D1:6F:29:30:80:56:69:F1:23:59:AA:E4:9D:F8:E4:B2:72:7A:32:0E:A2:1D:00:E0:C7:14:F6:61:71:91:F2:63"
+      ]
+    }
+  }
+]

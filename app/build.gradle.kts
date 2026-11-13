@@ -24,8 +24,8 @@ android {
         applicationId = "com.mindbend.optical.game"
         minSdk = 24
         targetSdk = 36
-        versionCode = 6
-        versionName = "1.0.5"
+        versionCode = 7
+        versionName = "1.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -91,4 +91,7 @@ dependencies {
     // Firebase BoM and Analytics
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+
+    // Google Mobile Ads SDK (AdMob)
+    implementation("com.google.android.gms:play-services-ads:23.1.0")
 }
